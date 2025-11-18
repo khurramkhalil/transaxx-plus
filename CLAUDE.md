@@ -63,6 +63,12 @@ transaxx-plus/
 │   ├── imagenet_eval.ipynb   # ImageNet evaluation example
 │   ├── models/               # Model definitions
 │   └── run_jupyter.sh        # Start Jupyter server
+├── experiments/           # Experimental framework (NEW)
+│   ├── baseline_approaches.py # Baseline implementations
+│   ├── experiment_runner.py   # Experiment orchestration
+│   ├── analysis.py           # Result analysis and plotting
+│   ├── run_experiments.py    # Main experiment script
+│   └── README.md             # Experiment documentation
 ├── tools/                 # Utility tools
 │   └── LUT_convert.ipynb    # Convert custom multipliers to C headers
 ├── pytorch-quantization/  # Quantization library (submodule/included)
@@ -405,6 +411,33 @@ pip install rtamt
 ```
 
 Already added to `requirements.txt`.
+
+### Experimental Framework
+
+A comprehensive framework for evaluating STL monitoring against baselines:
+
+```bash
+# Quick test (50 batches)
+python experiments/run_experiments.py --data /path/to/cifar10 --quick
+
+# Full evaluation
+python experiments/run_experiments.py --data /path/to/cifar10 --full
+```
+
+**Compares 4 approaches:**
+1. Static Approximation (no adaptation)
+2. Threshold-Based (reactive)
+3. STL Monitoring (predictive) ← our approach
+4. Oracle (upper bound)
+
+**Generates publication-ready outputs:**
+- Accuracy comparison bar charts
+- Robustness trace plots
+- Accuracy vs. power Pareto curves
+- LaTeX tables
+- Statistical summaries
+
+See `experiments/README.md` for complete documentation.
 
 ---
 
